@@ -16,7 +16,10 @@ abstract class database
 		}
 		catch(Exception $error)
 		{
-			echo $error->getMessage();
+			echo 'Could not connect to the database.';
+			
+			//echo $error->getMessage();
+			exit;
 		}
 	}
 	
