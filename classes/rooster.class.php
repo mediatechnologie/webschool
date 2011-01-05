@@ -1,4 +1,7 @@
 <?php
+/**
+ * rooster class.
+ */
 class rooster
 {
 	private $username;

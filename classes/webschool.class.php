@@ -13,15 +13,11 @@ class webschool
 		if(!empty($_GET['type']))
 		{
 			$this->type = $_GET['type'];
-			htmlentities($this->type);
-			stripslashes($this->type);
 		}
 	}
 	
 	/**
-	 * invoke function.
 	 * Generate webschool 
-	 *
 	 * @access public
 	 * @return void
 	 */
@@ -30,44 +26,37 @@ class webschool
 		$tags = array(
 			'name' 			=> 'Webschool',
 			'schoolname'		=> 'Mediacollege Amsterdam',
-			'url'			=> 'http://localhost/webschool/',
-			'title'			=> '',
-			'content'		=> '',
-			'sidebar'		=> ''
+			'url'			=> 'http://localhost/webschool/'
 		);
 
 		$menu = array(
 			'Homepage'		=>  'dashboard',
 			'Roosters'		=>  'schedule',
-			'Leerlingen'		=>  'students',
+			'Leerlingen'	=>  'students',
 			'Agenda'		=>  'agenda',
 			'Webmail'		=>  'mail'
 		);
 
-
 		// Create menu HTML code
-		$menu_content = '<ul>';
-		
-		    foreach ($menu as $page => $link)
-		    {
+	    foreach ($menu as $page => $link)
+	    {
 			$parameters = '';
-
 			if($this->type == $link)
 			{
 			    $parameters = 'class="active"';
 			}
-
+			
 			$menu_content .= '<li><a '.$parameters.' href="?type='.$link.'">'.$page.'</a></li>';
-		    }
-		
-		$menu_content .= '</ul>';
+	    }
 
-		$tags['menu'] = $menu_content;
+		$tags['menu'] = '<ul>'.$menu_content.'</ul>';
 
-		
 		try
 		{
-			if(class_exists($this->type))// and class_implements('page', $this->type))
+			/**
+			 * @todo Check whether the class is an implementation of the interface page
+			*/
+			if(class_exists($this->type))
 			{
 				$page = new $this->type;
 				

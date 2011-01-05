@@ -1,4 +1,7 @@
 <?php
+/**
+ * Structure for a box in the Webschool interface
+ */
 class box
 {
 	public $title;
@@ -10,6 +13,12 @@ class box
 		$this->content = $content;
 	}
 	
+	/**
+	 * Return the output for the box
+	 * 
+	 * @access public
+	 * @return void
+	 */
 	function getBox()
 	{
 		$tags = array(
@@ -22,6 +31,13 @@ class box
 		return $box->output();
 	}
 	
+	/**
+	 * Return the output for the box as a warning
+	 * 
+	 * @access public
+	 * @param mixed $kind
+	 * @return void
+	 */
 	function getWarning($kind)
 	{
 		$types = array('success', 'error', 'notice', 'warning');
@@ -31,7 +47,9 @@ class box
 			$kind = 'notice';
 		}
 		
-		// Dit kan wat netter
+		/**
+		 * @todo Tidy this up for a bit
+		 */
 		$this->content = str_replace('<p>', '', $this->content);
 		$this->content = str_replace('</p>', '', $this->content);
 		

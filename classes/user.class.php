@@ -1,4 +1,9 @@
 <?php
+/**
+ * Handle user data and session data
+ * 
+ * @extends database
+ */
 class user extends database
 {
 	protected $ses = $_SESSION;
