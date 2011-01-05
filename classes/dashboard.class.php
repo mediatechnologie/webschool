@@ -23,15 +23,14 @@
 			$content = '<form method="post"><p>Naam</p><form method="post"><p><input type="text" size="32" name="search" /> <input type="submit" value="Zoeken" /></p></form>';
 			$hoi = new box('Webschool', $content);
 			
-			$waarschuwing = new box('', 'Zo ziet een foutmelding eruit.');
-			
-			return $waarschuwing->getWarning('error').$waarschuwing->getWarning('error')
-			.$hoi->getBox().$hoi->getBox();
+			return $hoi->getBox().$hoi->getBox();
 		}
 		
 		function warnings()
 		{
-			return null;
+			$waarschuwing = new box('', 'Zo ziet een foutmelding eruit.');
+			
+			return $waarschuwing->getWarning('error').$waarschuwing->getWarning('error');
 		}
 	}
 ?>

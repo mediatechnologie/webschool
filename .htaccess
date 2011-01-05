@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine	on
+	
+	# If the request isn't a file or directory, send it to index.php
+	RewriteCond		%{REQUEST_FILENAME}		!-d
+	RewriteCond		%{REQUEST_FILENAME}		!-f
+	RewriteRule		(.*) index.php [L]
+</IfModule>
