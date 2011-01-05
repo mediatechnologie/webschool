@@ -16,7 +16,8 @@
 				<tr>
 					<th>#</th>
 					<th>Leerlingnummer</th>
-					<th>Naam</th>
+					<th>Voornaam</th>
+					<th>Achternaam</th>
 					<th>Klas</th>
 					<th>Al eerder</th>
 					<th>Opties</th>
@@ -28,7 +29,8 @@
 					<input name="check" type="checkbox" value="L04572">
 					</td>
 					<td>L4242</td>
-					<td>Danny Kriger</td>
+					<td>Danny</td>
+					<td>Kriger</td>
 					<td>M2T</td>
 					<td>2x</td>
 					<td>
@@ -40,7 +42,8 @@
 					<input name="check" type="checkbox" value="L1337">
 					</td>
 					<td>L1337</td>
-					<td>Mathijs Bernson</td>
+					<td>Mathijs</td>
+					<td>Bernson</td>
 					<td>M2T</td>
 					<td>3,5x</td>
 					<td>
@@ -52,7 +55,8 @@
 					<input name="check" type="checkbox" value="L4312">
 					</td>
 					<td>L4312</td>
-					<td>Farid el Nasire</td>
+					<td>Farid</td>
+					<td>el Nasire</td>
 					<td>M2T</td>
 					<td>2x</td>
 					<td>
@@ -64,9 +68,23 @@
 					<input name="check" type="checkbox" value="L4312">
 					</td>
 					<td>L3313</td>
-					<td>Johan Vlissingen</td>
+					<td>Johan</td>
+					<td>Vlissingen</td>
 					<td>M2T</td>
 					<td>2x</td>
+					<td>
+					<img src="img/icons/add.png">
+				</td>
+				</tr>
+				<tr>
+					<td>
+					<input name="check" type="checkbox" value="L4312">
+					</td>
+					<td>L7234</td>
+					<td>Henk</td>
+					<td>Ankerman</td>
+					<td>M2T</td>
+					<td>5x</td>
 					<td>
 					<img src="img/icons/add.png">
 				</td>
