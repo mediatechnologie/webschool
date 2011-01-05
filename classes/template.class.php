@@ -28,7 +28,7 @@ class template
 			$this->content = str_replace('{'.$key.'}', $tag, $this->content);
 		}			
 	}
-	
+
 	function output()
 	{
 		return $this->content;

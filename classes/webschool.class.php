@@ -29,12 +29,41 @@ class webschool
 	{
 		$tags = array(
 			'name' 			=> 'Webschool',
-			'schoolname'	=> 'Mediacollege Amsterdam',
+			'schoolname'		=> 'Mediacollege Amsterdam',
 			'url'			=> 'http://localhost/webschool/',
 			'title'			=> '',
 			'content'		=> '',
 			'sidebar'		=> ''
 		);
+
+		$menu = array(
+			'Homepage'		=>  'dashboard',
+			'Roosters'		=>  'schedule',
+			'Leerlingen'		=>  'students',
+			'Agenda'		=>  'agenda',
+			'Webmail'		=>  'mail'
+		);
+
+
+		// Create menu HTML code
+		$menu_content = '<ul>';
+		
+		    foreach ($menu as $page => $link)
+		    {
+			$parameters = '';
+
+			if($this->type == $link)
+			{
+			    $parameters = 'class="active"';
+			}
+
+			$menu_content .= '<li><a '.$parameters.' href="?type='.$link.'">'.$page.'</a></li>';
+		    }
+		
+		$menu_content .= '</ul>';
+
+		$tags['menu'] = $menu_content;
+
 		
 		try
 		{
