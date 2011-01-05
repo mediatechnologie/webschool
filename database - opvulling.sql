@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `role`, `class`, `username`, `password`, `lastlogin`, `firstname`, `lastname`, `email`, `phone`, `mobilephone`) VALUES
 (1, 1, 2, 'Danny', '092d994149c78a053e2f28f0d8681c0e', '2011-01-05 10:30:47', 'Danny', 'Kriger', 'danny@kriger.nl', '0206331538', '0624817446'),
-(2, 1, 1, 'Henk', '0d1c664bc5f1b11cd5f969bc58efdc96', '2011-01-05 10:29:28', 'Henk', 'Ankerman', 'mathijs@bernson.eu', '0200000000', '0630107711'),
+(2, 1, 1, 'Henk', '0d1c664bc5f1b11cd5f969bc58efdc96', '2011-01-05 10:29:28', 'Henk', 'Ankerman', 'henk.ankerman@slopsbox.com', '0200000000', '0600000000'),
 (3, 1, 2, 'Farid', '0d1c664bc5f1b11cd5f969bc58efdc96', '2011-01-05 10:38:07', 'Karel', 'Ankerman', 'f.elnasire@vividwebsystems.nl', '0200000000', '0631694246');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
