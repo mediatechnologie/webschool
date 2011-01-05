@@ -7,7 +7,7 @@ body {
 
 header {
 	background-color: #028fab;
-	border-bottom: solid 6px #042f36;
+	border-bottom: 6px solid #042f36;
 	color: #fff;
 }
 
@@ -39,6 +39,7 @@ p {
 footer {
 	width: 100%;
 	clear: both;
+	margin: 10px auto;
 	text-align: center;
 }
 
@@ -81,14 +82,14 @@ footer {
 }
 
 #articles {
-        position:absolute;
+	position:absolute;
 	left:360px;
 	right:20px;
 }
 
 
 .box {
-	margin:20px 0px;
+	margin: 20px 0px;
 	border: 1px solid #aaa;
 	border-radius: 3px;
 	overflow: hidden;
@@ -113,7 +114,7 @@ footer {
 
 aside {
 	position: absolute;
-	left:20px;
+	left: 20px;
 	width: 320px;
 }
 
@@ -171,13 +172,12 @@ table td {
 	content:url("../img/icons/magnifier.png");
 }
 
-/* Notificatie boxes */
-
+/* Notification boxes */
 .noticifation { 
 	padding: 12px;
 	padding-left: 45px;
 	border-radius: 3px;
-	margin-bottom: 10px;
+	margin: 20px 0px;
 }
 
 .error{ 
@@ -200,6 +200,7 @@ table td {
 	border: 1px solid #d3c200;
 }
 
+/* This needs to be prettier */
 input[type="text"], input[type="password"] { 
 	background: url('../img/input/input.png') repeat-x;
 	border: 1px solid #969696;

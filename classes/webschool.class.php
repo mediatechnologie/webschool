@@ -31,23 +31,27 @@ class webschool
 			'name' 			=> 'Webschool',
 			'schoolname'	=> 'Mediacollege Amsterdam',
 			'url'			=> 'http://localhost/webschool/',
-			'title'			=> 'Niet gevonden',
-			'content'		=> '<p>Oh noes, pagina niet gevonden!</p>',
+			'title'			=> '',
+			'content'		=> '',
 			'sidebar'		=> ''
 		);
 		
-		try {
-		if(class_exists($this->type))// and class_implements('page', $this->type))
+		try
 		{
-			$page = new $this->type;
-			
-			$tags['title'] 		= $page->title();
-			$tags['content'] 	= $page->content();
-			$tags['sidebar'] 	= $page->warnings().$page->boxes();
-		}
+			if(class_exists($this->type))// and class_implements('page', $this->type))
+			{
+				$page = new $this->type;
+				
+				$tags['title'] 		= $page->title();
+				$tags['content'] 	= $page->content();
+				$tags['sidebar'] 	= $page->warnings().$page->boxes();
+			}
 		}
 		catch(Exception $exception)
-		{}
+		{
+			$tags['title'] = 'Pagina niet gevonden!';
+			$tags['content'] = '<p>De pagina die je hebt opgevraagd bestaat niet.</p>';
+		}
 		
 		$layout = new template('html/webschool.html', $tags);
 		$layout->parse();
