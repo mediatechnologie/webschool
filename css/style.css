@@ -95,6 +95,10 @@ footer {
 	overflow: hidden;
 }
 
+.box .boxcontent input[type="text"] {
+	width: 230px;
+}
+
 .box h3 {
 	padding-left: 6px;
 	height:27px;
@@ -130,6 +134,10 @@ table tr {
 	border-left: 1px solid #fff;
 	border-right: 1px solid #fff;
 	border-bottom: 1px dotted #cecece;
+}
+
+table tr:nth-child(even) {
+	background-color: #fafafa;
 }
 
 table tr:hover { 

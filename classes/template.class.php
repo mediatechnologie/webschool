@@ -1,8 +1,9 @@
 <?php
-/*
-Template class
-Finds and replaces template-tags such as {name} in a file.
-*/
+/**
+ * Replace template tags such as {title}
+ * @author duck
+ * @version 1.0
+ */
 class template
 {
 	public $tags;
@@ -29,7 +30,7 @@ class template
 		}			
 	}
 
-	function output()
+	public function output()
 	{
 		return $this->content;
 	}

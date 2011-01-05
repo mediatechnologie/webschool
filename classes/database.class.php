@@ -1,13 +1,16 @@
 <?php
 /**
- * Abstract database class.
- * 
+ * Handles a connection to a database.
+ *
  * @abstract
  */
 abstract class database
 {
 	protected $db;
 	
+	/**
+	 * @todo Turn this thing into a proper database class
+	 */
 	function __construct()
 	{
 		try
@@ -18,7 +21,6 @@ abstract class database
 		{
 			echo 'Could not connect to the database.';
 			
-			//echo $error->getMessage();
 			exit;
 		}
 	}

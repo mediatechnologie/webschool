@@ -1,10 +1,10 @@
 <?php
 /**
- * Description of page
+ * Generic page class
  *
  * @author mathijs
+ * @extends database
  */
-
 class page extends database
 {
 	public $title;
