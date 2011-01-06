@@ -34,7 +34,7 @@ class webschool
 		{
 			/**
 			 * @todo Check whether the class is an implementation of the interface page
-			*/
+			 */
 			if(class_exists($this->type))
 			{
 				$page = new $this->type;
@@ -67,6 +67,9 @@ class webschool
 			'Roosters'		=>  'schedule',
 			'Leerlingen'	=>  'students',
 			'Agenda'		=>  'calendar',
+			'Resultaten'	=>  'grades',
+			'Bestanden'		=>  'files',
+			'Portfolio'		=>  'portfolio',
 			'Webmail'		=>  'mail'
 		);
 
@@ -76,10 +79,10 @@ class webschool
 			$parameters = '';
 			if($this->type == $link)
 			{
-			    $parameters = 'class="active"';
+			    $parameters = 'class="active" ';
 			}
 			
-			$menu_content .= '<li><a '.$parameters.' href="?type='.$link.'">'.$page.'</a></li>';
+			$menu_content .= '<li><a '.$parameters.'href="?type='.$link.'">'.$page.'</a></li>'."\n";
 	    }
 
 		return '<ul>'.$menu_content.'</ul>';	

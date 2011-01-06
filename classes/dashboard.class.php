@@ -83,7 +83,7 @@ class dashboard implements page
 		
 		$studentlist = new box('Leerlingen', $content);
 		
-		return $studentlist->getBox().$studentlist->getBox();
+		return $studentlist->getBox();
 	}
 	
 	function boxes()
@@ -92,14 +92,14 @@ class dashboard implements page
 		$content = '<form method="post"><p><input type="text" name="search" /> <input type="submit" value="Zoeken" /></p></form>';
 		$search = new box('Zoeken', $content);
 		
-		return $search->getBox().$search->getBox();
+		return $search->getBox();
 	}
 	
 	function warnings()
 	{
 		$waarschuwing = new box('Fout', 'Zo ziet een foutmelding eruit.');
 		
-		return $waarschuwing->getWarning('error').$waarschuwing->getWarning('error');
+		return $waarschuwing->getWarning('error');
 	}
 }
 ?>
