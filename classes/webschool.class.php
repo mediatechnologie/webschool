@@ -35,19 +35,25 @@ class webschool
 			/**
 			 * @todo Check whether the class is an implementation of the interface page
 			 */
-			if(class_exists($this->type))
-			{
-				$page = new $this->type;
-				
-				$tags['title'] 		= $page->title();
-				$tags['content'] 	= $page->content();
-				$tags['sidebar'] 	= $page->warnings().$page->boxes();
-			}
+			if(!class_exists($this->type))
+				throw new Exception($exception);
+			
+			if($this->type instanceof page)
+				throw new Exception($exception);
+			
+			$page = new $this->type;
+			
+			$tags['title'] 		= $page->title();
+			$tags['content'] 	= $page->content();
+			$tags['sidebar'] 	= $page->warnings().$page->boxes();
+			
 		}
 		catch(Exception $exception)
 		{
+			$error = new box('Fout', $exception->getMessage());
 			$tags['title'] = 'Pagina niet gevonden!';
 			$tags['content'] = '<p>De pagina die je hebt opgevraagd bestaat niet.</p>';
+			$tags['sidebar'] = $error->getWarning('error');
 		}
 		
 		$layout = new template('html/webschool.html', $tags);
@@ -63,27 +69,28 @@ class webschool
 	protected function menu()
 	{
 		$menu = array(
-			'Homepage'		=>  'dashboard',
-			'Roosters'		=>  'schedule',
-			'Leerlingen'	=>  'students',
-			'Agenda'		=>  'calendar',
-			'Resultaten'	=>  'grades',
-			'Bestanden'		=>  'files',
-			'Portfolio'		=>  'portfolio',
-			'Webmail'		=>  'mail'
+			'Homepage' => 'dashboard',
+			'Roosters' => 'schedule',
+			'Leerlingen' => 'students',
+			'Agenda' => 'calendar',
+			'Resultaten' => 'grades',
+			'Bestanden' => 'files',
+			'Portfolio' => 'portfolio',
+			'Webmail' => 'mail'
 		);
 
 		// Create menu HTML code
-	    foreach ($menu as $page => $link)
-	    {
+		$menu_content = '';
+		foreach ($menu as $page => $link)
+		{
 			$parameters = '';
 			if($this->type == $link)
 			{
-			    $parameters = 'class="active" ';
+				$parameters = 'class="active" ';
 			}
 			
 			$menu_content .= '<li><a '.$parameters.'href="?type='.$link.'">'.$page.'</a></li>'."\n";
-	    }
+		}
 
 		return '<ul>'.$menu_content.'</ul>';	
 	}
