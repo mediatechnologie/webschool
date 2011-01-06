@@ -1,0 +1,158 @@
+@charset "utf-8";
+
+body {
+	color: #222;
+	font-size: 13px;
+}
+
+#container {
+	width: 400px;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #f3f3f3;
+	height: 280px;
+	border-bottom: 3px solid #dce2e3;
+}
+
+#header {
+	background-color: #028fab;
+	border-bottom: 6px solid #042f36;
+	color: #fff;
+	height: 75px;
+}
+
+#menu {
+	height: 33px;
+}
+
+	#menu ul {
+		padding-left: 6px;
+	}
+	
+	#menu li {
+		list-style: none;
+		float: left;
+		margin-right: 15px;
+	}
+	
+		#menu a {
+			padding: 9px;
+			text-decoration:none;
+			float:left;
+			font-weight: bold;
+			font-size: 12px;
+			
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			
+			-moz-border-radius-topleft: 5px;
+			border-top-left-radius: 5px;
+			-moz-border-radius-topright: 5px;
+			border-top-right-radius: 5px;
+		}
+	
+		#menu a:hover,#menu li a.active {
+			background-color: #042f36;
+		}
+
+
+p {
+	padding: 10px;
+}
+
+#status {
+	float: right;
+	background-color: #042f36;
+	font-size: 11px;
+	padding: 10px;
+}
+
+#logo {
+	padding: 15px;
+}
+
+	#header h1 {
+		font-size: 24px;
+		height: 26px;
+	}
+	
+	#header h2 {
+		font-size: 12px;
+		height: 14px;
+	}
+
+#footer {
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Notification boxes */
+.noticifation { 
+	padding: 12px;
+	padding-left: 45px;
+	border-radius: 3px;
+	margin: 20px 0px;
+}
+
+.error{ 
+	background:#fae2e3 url('../img/noticifation/error.png') no-repeat left center;
+	border: 1px solid #ec9b9b;
+	}
+
+.notice{ 
+	background:#dde9f7 url('../img/noticifation/notice.png') no-repeat left center;
+	border: 1px solid #50b0ec;
+}
+
+.success{ 
+	background:#dffad3 url('../img/noticifation/success.png') no-repeat left center;
+	border: 1px solid #72cb67;
+}
+
+.warning{ 
+	background:#fffac6 url('../img/noticifation/warning.png') no-repeat left center;
+	border: 1px solid #d3c200;
+}
+
+/* This needs to be prettier */
+input[type="text"], input[type="password"] { 
+	background: url('../img/input/input.png') repeat-x;
+	border: 1px solid #969696;
+	border-right: 1px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
+	padding: 5px;
+	color: #666;
+}
+
+input[type="submit"], input[type="button"] { 
+	background: url('../img/input/background.png') repeat-x;
+	padding: 5px;
+	border: 1px solid #CDCDCD;
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	color: #666;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover { 
+	background: url('../img/input/hover.png') repeat-x;
+	color: #666;
+	cursor: pointer;
+}
+
+form {
+    padding: 15px 15px;
+    width: 341px; float:left;
+}
+
+form label {
+    display: block;
+    font-size: 18px;
+    padding-bottom: 8px;
+}
+.input-text {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 318px; 
+}
