@@ -27,7 +27,7 @@ class template
 		foreach($this->tags as $key=>$tag)
 		{
 			$this->content = str_replace('{'.$key.'}', $tag, $this->content);
-		}			
+		}
 	}
 
 	public function output()
