@@ -9,6 +9,7 @@
         </head>
         
         <body>
+		
         <div id="container">
         
             <header>
@@ -23,10 +24,9 @@
             </header>
             
                 <form action="index.php" method="post">
+		    <input type="hidden" name="do" value="login"/>
                     <label>Gebruikersnaam: <input name="username" type="text" /></label>
                     <label>Wachtwoord: <input name="password" type="password" /></label>
-                    
-                    <label><input type="checkbox" /> Onthoud mij</label>
                     
                     <input type="submit" value="Aanmelden"/>
                 </form>
