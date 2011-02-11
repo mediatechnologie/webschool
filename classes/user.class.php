@@ -6,7 +6,6 @@
  */
 class user extends database
 {
-	protected $ses;
 	public $username;
 	private $password;
 	
@@ -18,6 +17,13 @@ class user extends database
 		{
 			$this->verify($_POST['username'], $_POST['password']);
 		}
+		
+		// Uitloggen 
+		if($_GET['do'] == 'logout')
+		{
+			$this->logout();
+		}
+		
 		
 		if ($_GET['error'] == 'login')
 		{
@@ -74,6 +80,7 @@ class user extends database
 	{
 		// Loguit dmv Session Destroy.
 		session_destroy();
+		header('location: index.php');
 	}
 }
 ?>
