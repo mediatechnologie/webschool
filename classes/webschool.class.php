@@ -7,6 +7,7 @@ class webschool
 {
 	
 	public $type = 'dashboard';
+	private $user;
 	
 	function __construct()
 	{
@@ -14,6 +15,8 @@ class webschool
 		{
 			$this->type = $_GET['type'];
 		}
+
+		$this->user = new user;
 	}
 	
 	/**
@@ -25,9 +28,12 @@ class webschool
 	{
 		$tags = array(
 			'name' 			=> 'Webschool',
-			'schoolname'	=> 'Mediacollege Amsterdam',
+			'schoolname'		=> 'Mediacollege Amsterdam',
 			'url'			=> 'http://localhost/webschool/',
-			'menu'			=> $this->menu()
+			'menu'			=> $this->menu(),
+			'username'		=> $_SESSION['username'],
+			'firstname'		=> $_SESSION['firstname'],
+			'lastname'		=> $_SESSION['lastname'],
 		);
 
 		try
@@ -43,7 +49,7 @@ class webschool
 			
 			$page = new $this->type;
 			
-			$tags['title'] 		= $page->title();
+			$tags['title'] 	= $page->title();
 			$tags['content'] 	= $page->content();
 			$tags['sidebar'] 	= $page->warnings().$page->boxes();
 			
@@ -55,8 +61,17 @@ class webschool
 			$tags['content'] = '<p>De pagina die je hebt opgevraagd bestaat niet.</p>';
 			$tags['sidebar'] = $error->getWarning('error');
 		}
+
+		// Check if user is logged in
+		if(empty($_SESSION['username']))
+		{
+			$layout = new template('html/login.html', $tags);
+		}
+		else
+		{
+			$layout = new template('html/webschool.html', $tags);
+		}
 		
-		$layout = new template('html/webschool.html', $tags);
 		$layout->parse();
 		return $layout->output();
 	}
