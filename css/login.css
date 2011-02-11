@@ -11,7 +11,7 @@ body {
         margin-left: auto;
         margin-right: auto;
         background-color: #f3f3f3;
-        height: 316px;
+        height: 300px;
         border-bottom: 3px solid #dce2e3;
 }
 
@@ -118,4 +118,11 @@ form label {
     display: block;
     font-size: 18px;
     padding-bottom: 8px;
+}
+
+#error {
+        background:#fae2e3 url('../img/noticifation/error.png') no-repeat left center;
+        padding: 10px;
+        padding-left: 45px;
+        border-bottom: 1px solid #ec9b9b;
 }
