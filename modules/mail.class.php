@@ -18,6 +18,11 @@ class Mail extends database implements page
 	public function content()
 	{
 		$messages = $this->fetchMail();
+		$unread = 0;
+		
+		// Maak array zodat indien er geen berichten zijn er geen "array_unique() expects parameter 1 to be array, null given error komt"
+		$id_list = array();
+		
 		foreach($messages as $row => $key)
 		{
 
@@ -28,7 +33,7 @@ class Mail extends database implements page
 			$date = explode(' ', $key['date']);
 			$date = explode('-', $date[0]);
 
-			// Mark the unread messages
+			// Mark the unread messages in bold style
 			if($key['read'] == 0)
 			{
 				$attributes = 'class="message-unread"';
@@ -36,8 +41,8 @@ class Mail extends database implements page
 			}
 
 			// Names & Classes
-			$from = $key['from'];
-			$class = $key['from'];
+			$from = $this->idToUsername($key['from']);
+			$class = $this->idToClass($key['from']);
 
 			$mail_list.='
 				<tr '.$attributes.'>
@@ -54,31 +59,38 @@ class Mail extends database implements page
 				</tr>
 			';
 
-
-			$content = '<table>
-			<thead>
-				<tr>
-					<th></th>
-					<th width="275">Van</th>
-					<th width="22"></th>
-					<th>Onderwerp</th>
-					<th>Datum</th>
-					<th>Opties</th>
-				</tr>
-			</thead>
-			<tbody>
-			'.$mail_list.'
-			</tbody>
+			// Bovenkant van table
+			$content = '
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th width="275">Van</th>
+						<th width="22"></th>
+						<th>Onderwerp</th>
+						<th>Datum</th>
+						<th>Opties</th>
+					</tr>
+				</thead>
+				<tbody>
+					'.$mail_list.'
+				</tbody>
 			</table>
+			
 			<p>
-			<input name="send" type="button" value="Formulier verzenden">
+			<input name="send" type="button" value="Verwijderen"> <input name="send" type="button" value="Verplaatsen">
 			</p>';
+		}
+		
+		$id_list = array_unique($id_list);
 
+		// Geef melding als mensen nog niks in hun email box hebben staan.
+		if (count($id_list) == 0)
+		{
+			$content = '<p>Je hebt (nog) geen berichten in je mailbox.</p>';
 		}
 
-			$id_list = array_unique($id_list);
-			//print_r($id_list);
-			$Inbox = new Box('Messages', $content);
+			$Inbox = new box('Inbox - Ongelezen berichten ('.$unread.')', $content);
 			return $Inbox->getBox();
 	}
 
@@ -93,6 +105,7 @@ class Mail extends database implements page
 				<li>Verwijderd</li>
 			</ul>
 		';
+		
 		$Inbox = new Box('Inbox', $content);
 
 		return $Inbox->getBox();
@@ -106,10 +119,44 @@ class Mail extends database implements page
 	{
 		// Make SQL query
 		$sql = "SELECT * FROM `message` WHERE `to` = '".$_SESSION['userid']."' AND `parent` = '0' LIMIT $start, 25";
-
 		$messages = $this->db->query($sql);
 
 		return $messages->fetchAll();
+	}
+	
+	private function idToUsername($id)
+	{
+		// Make SQL query
+		$sql = "SELECT * FROM  `user` WHERE  `id` = '".$id."' LIMIT 0 , 1";
+		$results = $this->db->query($sql);
+		
+		foreach($results as $row)
+		{
+			$newUsername = $row['firstname'] .' '. $row['lastname'];
+		}
+		
+		return $newUsername;
+	}
+	
+	private function idToClass($id)
+	{
+		// Make SQL query
+		$sql = "SELECT * FROM  `user` WHERE  `id` = '".$id."' LIMIT 0 , 1";
+		$results = $this->db->query($sql);
+		
+		foreach($results as $row)
+		{
+			$newClass = $row['class'];
+			$sql = "SELECT * FROM  `class` WHERE  `id` = '".$newClass."' LIMIT 0 , 1";
+			$results = $this->db->query($sql);
+		
+			foreach($results as $row)
+			{
+				$newClass = $row['fullname'];
+			}
+		}
+		
+		return $newClass;
 	}
 }
 ?>
