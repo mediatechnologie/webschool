@@ -17,6 +17,18 @@ class Mail extends database implements page
 
 	public function content()
 	{
+		$action = $_GET['action'];
+		if($action == 'write')
+		{
+			return $this->writeEmail();
+		}
+		else {
+			return $this->showMailbox();
+		}
+	}
+	
+	private function showMailbox()
+	{
 		$messages = $this->fetchMail();
 		$unread = 0;
 		
@@ -80,6 +92,7 @@ class Mail extends database implements page
 			<p>
 			<input name="send" type="button" value="Verwijderen"> <input name="send" type="button" value="Verplaatsen">
 			</p>';
+			
 		}
 		
 		$id_list = array_unique($id_list);
@@ -92,6 +105,56 @@ class Mail extends database implements page
 
 			$Inbox = new box('Inbox - Ongelezen berichten ('.$unread.')', $content);
 			return $Inbox->getBox();
+			
+			return $content;
+	}
+
+	private function writeEmail()
+	{
+		
+		if(isset($_POST['aan']))
+		{
+			$to = $_POST['aan'];
+			$onderwerp = $_POST['onderwerp'];
+			$bericht = $_POST['bericht'];
+			
+			//Explode alle 
+			$to = explode(',', $to);
+		}		
+		$content =
+		'
+		<form method="post" action="index.php?type=mail&action=write">
+			<div id="write">
+				<ul>
+				    <li>
+					<div class="title">Aan:</div>
+				    </li>
+				    <li>
+					<textarea rows="2" cols="20" class="to" id="aan" name="aan" type="textfield"></textarea>
+				    </li>
+				    <li>
+					<div class="title">Onderwerp:</div>
+				    </li>
+				    <li>
+					<input id="onderwerp" name="onderwerp" type="text">
+				    </li>
+				    <li>
+					<div class="title">Bericht:</div>
+				    </li>
+				    <li>
+					<textarea rows="2" cols="20" class="mail" id="bericht" name="bericht" type="textfield"></textarea>
+				    </li>
+				</ul>
+			</div>
+			<p>
+				<input name="send" type="button" value="Verzenden"> <input name="send" type="button" value="Opslaan"> <input name="send" type="button" value="Verwijderen">
+			</p>
+		</form>';
+
+		$Inbox = new box('Nieuw bericht', $content);
+		return $Inbox->getBox();
+			
+		return $content;
 	}
 
 	public function boxes()
@@ -99,10 +162,10 @@ class Mail extends database implements page
 		// Inbox
 		$content = '
 			<ul>
-				<li>Nieuw bericht</li>
-				<li>Postvak IN</li>
-				<li>Verstuurd</li>
-				<li>Verwijderd</li>
+				<li><a href="index.php?type=mail&action=write">Nieuw bericht</a></li>
+				<li><a href="index.php?type=mail">Postvak IN</a></li>
+				<li><a href="#">Verstuurd</a></li>
+				<li><a href="#">Verwijderd</a></li>
 			</ul>
 		';
 		
@@ -126,7 +189,7 @@ class Mail extends database implements page
 	
 	private function idToUsername($id)
 	{
-		// Make SQL query
+		// Maakt van een idnummer dat dat in de database staat bij een mail een voornaam en achternaam
 		$sql = "SELECT * FROM  `user` WHERE  `id` = '".$id."' LIMIT 0 , 1";
 		$results = $this->db->query($sql);
 		
@@ -140,7 +203,7 @@ class Mail extends database implements page
 	
 	private function idToClass($id)
 	{
-		// Make SQL query
+		// Maakt van een idnummer dat dat in de database staat bij een mail een klasnaam
 		$sql = "SELECT * FROM  `user` WHERE  `id` = '".$id."' LIMIT 0 , 1";
 		$results = $this->db->query($sql);
 		
